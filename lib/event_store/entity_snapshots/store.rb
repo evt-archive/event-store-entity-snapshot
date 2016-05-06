@@ -16,8 +16,35 @@ module EventStore
         @category_name ||= CategoryName.get entity_class.to_s
       end
 
+      def get(id)
+        logger.trace "Reading snapshot (ID: #{id.inspect}, Entity Class: #{entity_class.name})"
+
+        stream_name = self.stream_name id
+
+        reader = EventStore::Client::HTTP::Reader.build stream_name, slice_size: 1, direction: :backward
+
+        event = nil
+        reader.each do |_event|
+          event = _event
+        end
+
+        if event.nil?
+          logger.warn "Snapshot could not be read (ID: #{id.inspect}, Entity Class: #{entity_class.name})"
+          return
+        end
+
+        message = Serialize::Read.instance event.data, Message
+        entity = Serialize::Read.instance message.data, entity_class
+
+        version, time = message.version, message.time
+
+        logger.debug "Read snapshot (ID: #{id.inspect}, Entity Class: #{entity_class.name}, Version: #{version.inspect}, Time: #{time})"
+
+        return entity, version, time
+      end
+
       def put(id, entity, version, time)
-        logger.debug "Writing snapshot (ID: #{id.inspect}, Entity Class: #{entity.class.name}, Version: #{version.inspect}, Time: #{time})"
+        logger.trace "Writing snapshot (ID: #{id.inspect}, Entity Class: #{entity.class.name}, Version: #{version.inspect}, Time: #{time})"
 
         data = Serialize::Write.raw_data entity
 

@@ -7,6 +7,11 @@ module EventStore
 
           attribute :some_attribute
 
+          def ==(other)
+            other.is_a?(self.class) &&
+              some_attribute == other.some_attribute
+          end
+
           module Serializer
             def self.raw_data(instance)
               instance.to_h
