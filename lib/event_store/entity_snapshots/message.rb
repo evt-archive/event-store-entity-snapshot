@@ -8,6 +8,10 @@ module EventStore
       attribute :version
       attribute :time
 
+      def entity(entity_class)
+        Serialize::Read.instance data, entity_class
+      end
+
       module Serializer
         def self.raw_data(instance)
           instance.to_h

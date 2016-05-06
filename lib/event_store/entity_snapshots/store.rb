@@ -34,7 +34,7 @@ module EventStore
         end
 
         message = Serialize::Read.instance event.data, Message
-        entity = Serialize::Read.instance message.data, entity_class
+        entity = message.entity entity_class
 
         version, time = message.version, message.time
 
