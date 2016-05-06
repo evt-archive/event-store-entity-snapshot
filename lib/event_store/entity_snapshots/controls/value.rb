@@ -1,11 +1,9 @@
 module EventStore
   module EntitySnapshots
     module Controls
-      module Subject
-        ExampleEntity = Module.new
-
+      module Value
         def self.example
-          ExampleEntity
+          'some value'
         end
       end
     end

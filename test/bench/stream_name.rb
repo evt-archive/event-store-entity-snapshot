@@ -1,14 +1,15 @@
 require_relative './bench_init'
 
 context "Stream name" do
-  id = 'some-id'
-  subject = EventStore::EntitySnapshots::Controls::Subject.example
+  entity_class = EventStore::EntitySnapshots::Controls::Entity::ExampleEntity
 
-  stream_name = EventStore::EntitySnapshots::Controls::StreamName.example id
-
-  store = EventStore::EntitySnapshots::Store.build subject
+  store = EventStore::EntitySnapshots::Store.build entity_class
 
   test "Category is inferred from subject" do
+    id = 'some-id'
+
+    stream_name = EventStore::EntitySnapshots::Controls::StreamName.example id
+
     assert store.stream_name(id) == stream_name
   end
 end
