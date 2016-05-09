@@ -17,6 +17,6 @@ require_relative '../init.rb'
 
 require 'securerandom'
 require 'test_bench'; TestBench.activate
-require 'event_store/entity_snapshots/controls'
+require 'event_store/entity_snapshot/controls'
 
 Telemetry::Logger::AdHoc.activate

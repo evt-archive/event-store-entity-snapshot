@@ -1,5 +1,5 @@
 module EventStore
-  module EntitySnapshots
+  module EntitySnapshot
     class Store
       include EventStore::Messaging::StreamName
       include EntityCache::Storage::Persistent

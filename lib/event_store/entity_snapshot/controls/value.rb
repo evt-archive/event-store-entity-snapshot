@@ -1,9 +1,9 @@
 module EventStore
-  module EntitySnapshots
+  module EntitySnapshot
     module Controls
-      module Version
+      module Value
         def self.example
-          11
+          'some value'
         end
       end
     end

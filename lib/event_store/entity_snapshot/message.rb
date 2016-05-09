@@ -1,5 +1,5 @@
 module EventStore
-  module EntitySnapshots
+  module EntitySnapshot
     class Message
       include EventStore::Messaging::Message
 

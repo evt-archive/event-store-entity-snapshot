@@ -1,11 +1,11 @@
 module EventStore
-  module EntitySnapshots
+  module EntitySnapshot
     module Controls
       module Message
         def self.example(id=nil)
           id ||= ::Controls::ID.get
 
-          instance = EntitySnapshots::Message.new
+          instance = EntitySnapshot::Message.new
           instance.id = id
           instance.data = Entity::Data.example
           instance.version = Version.example

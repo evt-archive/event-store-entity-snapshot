@@ -1,5 +1,5 @@
 module EventStore
-  module EntitySnapshots
+  module EntitySnapshot
     module Controls
       module Entity
         class ExampleEntity

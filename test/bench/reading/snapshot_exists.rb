@@ -2,11 +2,11 @@ require_relative '../bench_init'
 
 context "Reading snapshots that have been previously written" do
   id = Controls::ID.get
-  control_entity = EventStore::EntitySnapshots::Controls::Entity.example
-  control_version = EventStore::EntitySnapshots::Controls::Version.example
+  control_entity = EventStore::EntitySnapshot::Controls::Entity.example
+  control_version = EventStore::EntitySnapshot::Controls::Version.example
   control_time = Controls::Time.reference
 
-  store = EventStore::EntitySnapshots::Store.build control_entity.class
+  store = EventStore::EntitySnapshot::Store.build control_entity.class
 
   store.put id, control_entity, control_version, control_time
 
