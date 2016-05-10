@@ -6,7 +6,7 @@ context "Reading snapshots that have been previously written" do
   control_version = EventStore::EntitySnapshot::Controls::Version.example
   control_time = Controls::Time.reference
 
-  store = EventStore::EntitySnapshot::Store.build control_entity.class
+  store = EventStore::EntitySnapshot::Controls::Store.example
 
   store.put id, control_entity, control_version, control_time
 
