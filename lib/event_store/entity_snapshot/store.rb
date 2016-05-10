@@ -58,7 +58,7 @@ module EventStore
 
         writer.write message, stream_name
 
-        logger.debug "Wrote snapshot (ID: #{id.inspect}, Entity Class: #{entity.class.name}, Version: #{version.inspect}, Time: #{time})"
+        logger.debug "Wrote snapshot (Stream: #{stream_name.inspect}, Entity Class: #{entity.class.name}, Version: #{version.inspect}, Time: #{time})"
       end
 
       module CategoryName
