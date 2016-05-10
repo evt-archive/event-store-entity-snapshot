@@ -26,10 +26,11 @@ module EventStore
         event = nil
         reader.each do |_event|
           event = _event
+          break
         end
 
         if event.nil?
-          logger.warn "Snapshot could not be read (ID: #{id.inspect}, Entity Class: #{entity_class.name})"
+          logger.debug "Snapshot could not be read (ID: #{id.inspect}, Entity Class: #{entity_class.name})"
           return
         end
 
