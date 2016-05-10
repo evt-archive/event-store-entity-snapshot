@@ -8,7 +8,7 @@ else
 end
 
 ENV['LOGGER'] ||= 'off'
-ENV['LOG_OPTIONAL'] ||= 'on'
+ENV['LOG_OPTIONAL'] ||= 'off'
 ENV['ENTITY_CACHE_SCOPE'] ||= 'exclusive'
 
 puts RUBY_DESCRIPTION
