@@ -5,7 +5,7 @@ context "Writing snapshots" do
   entity = EventStore::EntitySnapshot::Controls::Entity.example
   version = EventStore::EntitySnapshot::Controls::Version.example
 
-  store = EventStore::EntitySnapshot::Store.build entity.class
+  store = EventStore::EntitySnapshot::Controls::Store.example
   SubstAttr::Substitute.(:writer, store)
   SubstAttr::Substitute.(:clock, store)
   store.clock.now = Controls::Time::Raw.example

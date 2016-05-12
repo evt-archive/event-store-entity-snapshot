@@ -3,8 +3,7 @@ require_relative '../bench_init'
 context "Reading snapshots that have not been written" do
   id = Identifier::UUID::Random.get
 
-  entity_class = EventStore::EntitySnapshot::Controls::Entity::ExampleEntity
-  store = EventStore::EntitySnapshot::Store.build entity_class
+  store = EventStore::EntitySnapshot::Controls::Store.example
 
   entity, version, time = store.get id
 
