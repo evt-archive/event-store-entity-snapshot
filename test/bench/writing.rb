@@ -1,16 +1,15 @@
 require_relative './bench_init'
 
 context "Writing snapshots" do
-  id = Controls::ID.get
+  id = EventStore::EntitySnapshot::Controls::ID.example
   entity = EventStore::EntitySnapshot::Controls::Entity.example
   version = EventStore::EntitySnapshot::Controls::Version.example
+  time = EventStore::EntitySnapshot::Controls::Time.example
 
   store = EventStore::EntitySnapshot::Controls::Store.example
   SubstAttr::Substitute.(:writer, store)
-  SubstAttr::Substitute.(:clock, store)
-  store.clock.now = Controls::Time::Raw.example
 
-  store.put id, entity, version
+  store.put id, entity, version, time
 
   test "Snapshot message is written" do
     control_message = EventStore::EntitySnapshot::Controls::Message.example

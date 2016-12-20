@@ -3,13 +3,13 @@ module EventStore
     module Controls
       module Message
         def self.example(id=nil)
-          id ||= ::Controls::ID.get
+          id ||= ID.example
 
           instance = EntitySnapshot::Message.new
           instance.id = id
           instance.data = Entity::Data.example
           instance.version = Version.example
-          instance.time = ::Controls::Time.reference
+          instance.time = Time.example
 
           instance
         end

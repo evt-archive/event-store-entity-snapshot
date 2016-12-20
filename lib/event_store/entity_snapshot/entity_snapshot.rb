@@ -2,7 +2,7 @@ module EventStore
   module EntitySnapshot
     def self.included(cls)
       cls.class_exec do
-        prepend ConfigureDependencies
+        prepend Configure
         prepend Get
         prepend Put
 
@@ -15,6 +15,8 @@ module EventStore
       end
     end
 
+    Virtual::Method.define self, :configure
+
     def snapshot_stream_name(id)
       category_name = self.category_name
       category_name = "#{category_name}:snapshot"
@@ -22,10 +24,14 @@ module EventStore
       stream_name id, category_name
     end
 
-    module ConfigureDependencies
-      def configure_dependencies
+    module Configure
+      def configure
         EventStore::Messaging::Writer.configure self
+
+        super
       end
+
+      alias_method :configure_dependencies, :configure
     end
 
     module Get

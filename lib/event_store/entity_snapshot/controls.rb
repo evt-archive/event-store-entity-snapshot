@@ -1,8 +1,11 @@
 require 'entity_cache/controls'
+require 'event_store/messaging/controls'
 
 require 'event_store/entity_snapshot/controls/entity'
+require 'event_store/entity_snapshot/controls/id'
 require 'event_store/entity_snapshot/controls/message'
 require 'event_store/entity_snapshot/controls/store'
 require 'event_store/entity_snapshot/controls/stream_name'
+require 'event_store/entity_snapshot/controls/time'
 require 'event_store/entity_snapshot/controls/value'
 require 'event_store/entity_snapshot/controls/version'
