@@ -53,7 +53,7 @@ module EventStore
           return
         end
 
-        message = Serialize::Read.instance event.data, Message
+        message = Transform::Read.instance event.data, Message
         entity = message.entity entity_class
 
         version, time = message.version, message.time
@@ -70,7 +70,7 @@ module EventStore
 
         logger.trace "Writing snapshot (Stream: #{stream_name.inspect}, Entity Class: #{entity.class.name}, Version: #{version.inspect}, Time: #{time})"
 
-        data = Serialize::Write.raw_data entity
+        data = Transform::Write.raw_data entity
 
         message = Message.new
         message.id = id

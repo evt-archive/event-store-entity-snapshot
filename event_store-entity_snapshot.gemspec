@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'entity_cache', '~> 0.6.0'
   s.add_runtime_dependency 'event_store-messaging'
-  s.add_runtime_dependency 'serialize'
 
   s.add_development_dependency 'test_bench'
 end

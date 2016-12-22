@@ -12,7 +12,7 @@ module EventStore
               some_attribute == other.some_attribute
           end
 
-          module Serializer
+          module Transformer
             def self.raw_data(instance)
               instance.to_h
             end
@@ -26,7 +26,7 @@ module EventStore
         module Data
           def self.example
             entity = Entity.example
-            Serialize::Write.raw_data entity
+            Transform::Write.raw_data entity
           end
         end
 

@@ -9,10 +9,10 @@ module EventStore
       attribute :time
 
       def entity(entity_class)
-        Serialize::Read.instance data, entity_class
+        Transform::Read.instance data, entity_class
       end
 
-      module Serializer
+      module Transformer
         def self.raw_data(instance)
           instance.to_h
         end

@@ -1,5 +1,4 @@
 require 'entity_cache'
-require 'serialize'
 
 require 'event_store/messaging'
 
