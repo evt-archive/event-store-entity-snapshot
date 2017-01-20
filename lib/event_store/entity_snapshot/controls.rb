@@ -1,5 +1,5 @@
 require 'entity_cache/controls'
-require 'event_store/messaging/controls'
+require 'messaging/event_store/controls'
 
 require 'event_store/entity_snapshot/controls/entity'
 require 'event_store/entity_snapshot/controls/id'

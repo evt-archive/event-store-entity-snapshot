@@ -6,10 +6,10 @@ module EventStore
         prepend Get
         prepend Put
 
-        include EventStore::Messaging::StreamName
+        include ::Messaging::StreamName
         include EntityCache::Storage::Persistent
 
-        dependency :writer, EventStore::Messaging::Writer
+        dependency :write, ::Messaging::EventStore::Write
 
         alias_method :entity_class, :subject
       end
@@ -18,7 +18,7 @@ module EventStore
     Virtual::Method.define self, :configure
 
     def snapshot_stream_name(id)
-      category_name = self.category_name
+      category_name = category
       category_name = "#{category_name}:snapshot"
 
       stream_name id, category_name
@@ -26,7 +26,7 @@ module EventStore
 
     module Configure
       def configure
-        EventStore::Messaging::Writer.configure self
+        ::Messaging::EventStore::Write.configure self
 
         super
       end
@@ -40,10 +40,10 @@ module EventStore
 
         logger.trace "Reading snapshot (Stream: #{stream_name.inspect}, Entity Class: #{entity_class.name})"
 
-        reader = EventStore::Client::HTTP::Reader.build stream_name, slice_size: 1, direction: :backward
+        read = EventSource::EventStore::HTTP::Read.build stream_name, batch_size: 1, precedence: :desc
 
         event = nil
-        reader.each do |_event|
+        read.() do |_event|
           event = _event
           break
         end
@@ -53,7 +53,7 @@ module EventStore
           return
         end
 
-        message = Transform::Read.instance event.data, Message
+        message = ::Messaging::Message::Import.(event, Message)
         entity = message.entity entity_class
 
         version, time = message.version, message.time
@@ -78,7 +78,7 @@ module EventStore
         message.version = version
         message.time = time
 
-        writer.write message, stream_name
+        write.(message, stream_name)
 
         logger.debug "Wrote snapshot (Stream: #{stream_name.inspect}, Entity Class: #{entity.class.name}, Version: #{version.inspect}, Time: #{time})"
       end

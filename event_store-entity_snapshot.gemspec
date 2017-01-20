@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.3.3'
 
   s.add_runtime_dependency 'evt-entity_cache', '~> 0.6.0'
-  s.add_runtime_dependency 'event_store-messaging'
+  s.add_runtime_dependency 'evt-messaging-event_store'
 
   s.add_development_dependency 'test_bench'
 end

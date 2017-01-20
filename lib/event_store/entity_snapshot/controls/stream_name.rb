@@ -5,7 +5,7 @@ module EventStore
         def self.example(id=nil)
           id ||= ::Controls::ID.get
 
-          EventStore::Messaging::StreamName.stream_name id, Category.example
+          ::Messaging::StreamName.stream_name id, Category.example
         end
 
         module Category

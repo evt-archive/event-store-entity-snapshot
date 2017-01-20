@@ -1,6 +1,6 @@
 require 'entity_cache'
 
-require 'event_store/messaging'
+require 'messaging/event_store'
 
 require 'event_store/entity_snapshot/activate'
 require 'event_store/entity_snapshot/entity_snapshot'

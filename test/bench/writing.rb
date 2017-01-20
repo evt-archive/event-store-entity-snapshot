@@ -7,14 +7,14 @@ context "Writing snapshots" do
   time = EventStore::EntitySnapshot::Controls::Time.example
 
   store = EventStore::EntitySnapshot::Controls::Store.example
-  SubstAttr::Substitute.(:writer, store)
+  SubstAttr::Substitute.(:write, store)
 
   store.put id, entity, version, time
 
   test "Snapshot message is written" do
     control_message = EventStore::EntitySnapshot::Controls::Message.example
 
-    assert store.writer do
+    assert store.write do
       written? do |message|
         message == control_message
       end
