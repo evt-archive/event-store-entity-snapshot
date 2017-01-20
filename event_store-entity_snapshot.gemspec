@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 Gem::Specification.new do |s|
   s.name = 'event_store-entity_snapshot'
-  s.version = '0.3.0.0'
+  s.version = '0.4.0.0.pre1'
   s.summary = 'Entity snapshots using EventStore'
   s.description = ' '
 
